@@ -1,0 +1,6 @@
+# RuleForge 全局主题配置（Streamlit 原生主题）
+# 只设主色与字体，背景/文字留给 Streamlit 默认主题，保证深浅色模式均可正常切换
+# 注意：不要设置 headless=true，否则启动时不自动打开浏览器
+[theme]
+primaryColor = "#1f6feb"   # 沉稳专业蓝
+font = "sans serif"

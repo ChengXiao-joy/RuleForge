@@ -1,0 +1,110 @@
+[
+  {
+    "id": "T01",
+    "scenario": "人事",
+    "type": "normal",
+    "eval": true,
+    "input": "如果员工本月迟到超过3次，就发邮件提醒人事部门",
+    "expected_result_type": "rule",
+    "note": "单条件 + notify 动作，最基础的规则形态"
+  },
+  {
+    "id": "T02",
+    "scenario": "人事",
+    "type": "normal",
+    "eval": true,
+    "input": "如果员工连续缺勤超过5天，就自动发起离职面谈审批",
+    "expected_result_type": "rule",
+    "note": "单条件 + approve 动作"
+  },
+  {
+    "id": "T03",
+    "scenario": "销售",
+    "type": "normal",
+    "eval": true,
+    "input": "如果订单金额超过1000元且客户是VIP，就批准打8折",
+    "expected_result_type": "rule",
+    "note": "两个条件用 and 组合，验证逻辑节点与嵌套条件树"
+  },
+  {
+    "id": "T04",
+    "scenario": "销售",
+    "type": "normal",
+    "eval": true,
+    "input": "如果客户过去半年消费金额超过5000元，就给客户打上高价值标签",
+    "expected_result_type": "rule",
+    "note": "单条件 + tag 动作"
+  },
+  {
+    "id": "T05",
+    "scenario": "个人生活",
+    "type": "normal",
+    "eval": true,
+    "input": "如果今天气温低于10度，就提醒我穿厚外套",
+    "expected_result_type": "rule",
+    "note": "个人生活场景，personal 目标对象"
+  },
+  {
+    "id": "T06",
+    "scenario": "个人生活",
+    "type": "normal",
+    "eval": true,
+    "input": "如果信用卡账单金额超过5000元，就提醒我尽快还款",
+    "expected_result_type": "rule",
+    "note": "个人财务提醒场景"
+  },
+  {
+    "id": "T07",
+    "scenario": "通用",
+    "type": "defect",
+    "eval": true,
+    "input": "处理一下",
+    "expected_result_type": "clarification",
+    "note": "缺陷规则：输入过于笼统，应返回需要澄清"
+  },
+  {
+    "id": "T08",
+    "scenario": "通用",
+    "type": "defect",
+    "eval": true,
+    "input": "发邮件提醒人事部门",
+    "expected_result_type": "clarification",
+    "note": "缺陷规则：只有动作、缺少触发条件"
+  },
+  {
+    "id": "T09",
+    "scenario": "通用",
+    "type": "defect",
+    "eval": true,
+    "input": "如果员工本月迟到超过3次",
+    "expected_result_type": "clarification",
+    "note": "缺陷规则：只有条件、缺少执行动作"
+  },
+  {
+    "id": "T10",
+    "scenario": "通用",
+    "type": "defect",
+    "eval": true,
+    "input": "今天天气怎么样",
+    "expected_result_type": "clarification",
+    "note": "缺陷规则：根本不是一条规则，应返回需要澄清"
+  },
+  {
+    "id": "C01",
+    "scenario": "销售",
+    "type": "conflict",
+    "eval": false,
+    "input": "如果客户是VIP，就批准打8折",
+    "expected_result_type": "rule",
+    "note": "冲突样例 A：与 C02 构成动作冲突（同触发条件、不同折扣），供阶段1 冲突检测引擎使用"
+  },
+  {
+    "id": "C02",
+    "scenario": "销售",
+    "type": "conflict",
+    "eval": false,
+    "input": "如果客户是VIP，就批准打9折",
+    "expected_result_type": "rule",
+    "note": "冲突样例 B：与 C01 构成动作冲突，供阶段1 冲突检测引擎使用"
+  }
+]

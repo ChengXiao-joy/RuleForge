@@ -1,0 +1,54 @@
+{
+  "app": "RuleForge",
+  "description": "样例一：基础办公校验规则（单规则自检、规则管理演示）",
+  "rules": [
+    {
+      "rule": {
+        "rule_id": "OFF-001",
+        "name": "迟到提醒",
+        "description": "员工本月迟到超过3次时发邮件提醒人事部门",
+        "version": 1,
+        "priority": 50,
+        "status": "enabled",
+        "category": "人事",
+        "effective_scope": {"target_type": "employee", "filters": []},
+        "conditions": {"type": "condition", "field": "attendance.monthly_late_count", "operator": "gt", "value": 3},
+        "actions": [{"type": "action", "action_type": "notify", "target": "人事部门", "channel": "email", "message": "员工{name}本月迟到{count}次，请关注", "params": {}}],
+        "created_at": null, "updated_at": null, "author": null
+      },
+      "versions": []
+    },
+    {
+      "rule": {
+        "rule_id": "OFF-002",
+        "name": "连续缺勤审批",
+        "description": "员工连续缺勤超过5天时发起离职面谈审批",
+        "version": 1,
+        "priority": 50,
+        "status": "enabled",
+        "category": "人事",
+        "effective_scope": {"target_type": "employee", "filters": []},
+        "conditions": {"type": "condition", "field": "attendance.absence_days", "operator": "gt", "value": 5},
+        "actions": [{"type": "action", "action_type": "approve", "target": "离职面谈", "channel": null, "message": "发起离职面谈审批", "params": {}}],
+        "created_at": null, "updated_at": null, "author": null
+      },
+      "versions": []
+    },
+    {
+      "rule": {
+        "rule_id": "OFF-003",
+        "name": "高额报销审批",
+        "description": "报销金额超过5000元时走财务经理审批",
+        "version": 1,
+        "priority": 50,
+        "status": "enabled",
+        "category": "财务",
+        "effective_scope": {"target_type": "task", "filters": []},
+        "conditions": {"type": "condition", "field": "expense.amount", "operator": "gt", "value": 5000},
+        "actions": [{"type": "action", "action_type": "approve", "target": "财务经理", "channel": null, "message": "高额报销需财务经理审批", "params": {}}],
+        "created_at": null, "updated_at": null, "author": null
+      },
+      "versions": []
+    }
+  ]
+}

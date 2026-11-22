@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# 环境与密钥（.env 及所有备份，防止密钥泄露；保留 .env.example 模板）
+.env
+.env.*
+.env_*
+!.env.example
+*.key
+
+# 虚拟环境
+.venv/
+venv/
+env/
+
+# 本地数据与日志
+logs/
+storage/*.db
+storage/*.db-journal
+storage/*.db-wal
+storage/*.db-shm
+*.log
+
+# 导出/临时文件
+rules*.json
+ruleforge_rules*.json
+*.tmp
+
+# 测试缓存
+.pytest_cache/
+.coverage
+htmlcov/
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+.DS_Store
+.streamlit/*
+# 主题配置纳入版本库（其余 .streamlit 内容忽略）
+!.streamlit/config.toml
+Thumbs.db

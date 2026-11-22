@@ -1,0 +1,9 @@
+# RuleForge 规则工坊 依赖清单（锁定版本，保证可复现安装）
+# 升级依赖前请先跑全量测试：.venv\Scripts\python -m pytest tests/ -v
+
+anthropic==2.8.0        # Claude API 官方 SDK（含 httpx2 传输层）
+httpx2==2.16.0          # anthropic 2.x 的 HTTP 传输依赖（显式锁定）
+streamlit==1.67.0       # UI 页面
+pydantic==2.14.3        # Rule Schema 定义与校验
+python-dotenv==1.2.4    # 读取 .env 配置
+pytest==9.2.0           # 单元测试

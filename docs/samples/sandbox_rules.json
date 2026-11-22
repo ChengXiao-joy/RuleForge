@@ -1,0 +1,73 @@
+{
+  "app": "RuleForge",
+  "description": "样例三：沙箱推演测试规则集（优先级命中链路演示）",
+  "rules": [
+    {
+      "rule": {
+        "rule_id": "SIM-001",
+        "name": "高额订单拦截",
+        "description": "订单金额超过5000元时拦截（最高优先级）",
+        "version": 1,
+        "priority": 70,
+        "status": "enabled",
+        "category": "销售",
+        "effective_scope": {"target_type": "order", "filters": []},
+        "conditions": {"type": "condition", "field": "order.amount", "operator": "gt", "value": 5000},
+        "actions": [{"type": "action", "action_type": "block", "target": "订单", "channel": null, "message": "高额订单触发风控拦截", "params": {}}],
+        "created_at": null, "updated_at": null, "author": null
+      },
+      "versions": []
+    },
+    {
+      "rule": {
+        "rule_id": "SIM-002",
+        "name": "VIP大额订单特惠",
+        "description": "订单金额超1000且客户为VIP时批准8折",
+        "version": 1,
+        "priority": 60,
+        "status": "enabled",
+        "category": "销售",
+        "effective_scope": {"target_type": "order", "filters": []},
+        "conditions": {"type": "logic", "logic": "and", "children": [
+          {"type": "condition", "field": "order.amount", "operator": "gt", "value": 1000},
+          {"type": "condition", "field": "customer.level", "operator": "eq", "value": "VIP"}
+        ]},
+        "actions": [{"type": "action", "action_type": "approve", "target": "折扣", "channel": null, "message": "批准8折优惠", "params": {"discount": 0.8}}],
+        "created_at": null, "updated_at": null, "author": null
+      },
+      "versions": []
+    },
+    {
+      "rule": {
+        "rule_id": "SIM-003",
+        "name": "VIP普通折扣",
+        "description": "客户为VIP时批准9折",
+        "version": 1,
+        "priority": 50,
+        "status": "enabled",
+        "category": "销售",
+        "effective_scope": {"target_type": "order", "filters": []},
+        "conditions": {"type": "condition", "field": "customer.level", "operator": "eq", "value": "VIP"},
+        "actions": [{"type": "action", "action_type": "approve", "target": "折扣", "channel": null, "message": "批准9折优惠", "params": {"discount": 0.9}}],
+        "created_at": null, "updated_at": null, "author": null
+      },
+      "versions": []
+    },
+    {
+      "rule": {
+        "rule_id": "SIM-004",
+        "name": "迟到提醒",
+        "description": "员工本月迟到超过3次时提醒",
+        "version": 1,
+        "priority": 50,
+        "status": "enabled",
+        "category": "人事",
+        "effective_scope": {"target_type": "employee", "filters": []},
+        "conditions": {"type": "condition", "field": "attendance.monthly_late_count", "operator": "gt", "value": 3},
+        "actions": [{"type": "action", "action_type": "notify", "target": "人事部门", "channel": "email", "message": "员工{name}本月迟到{count}次", "params": {}}],
+        "created_at": null, "updated_at": null, "author": null
+      },
+      "versions": []
+    }
+  ]
+}

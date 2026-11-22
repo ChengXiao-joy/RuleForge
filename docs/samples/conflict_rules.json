@@ -1,0 +1,70 @@
+{
+  "app": "RuleForge",
+  "description": "样例二：多条互斥冲突规则（冲突检测引擎演示）",
+  "rules": [
+    {
+      "rule": {
+        "rule_id": "MUT-001",
+        "name": "VIP客户8折审批",
+        "description": "客户是VIP时批准打8折",
+        "version": 1,
+        "priority": 50,
+        "status": "enabled",
+        "category": "销售",
+        "effective_scope": {"target_type": "order", "filters": []},
+        "conditions": {"type": "condition", "field": "customer.level", "operator": "eq", "value": "VIP"},
+        "actions": [{"type": "action", "action_type": "approve", "target": "折扣", "channel": null, "message": "批准8折优惠", "params": {"discount": 0.8}}],
+        "created_at": null, "updated_at": null, "author": null
+      },
+      "versions": []
+    },
+    {
+      "rule": {
+        "rule_id": "MUT-002",
+        "name": "VIP客户订单拦截",
+        "description": "客户是VIP时拦截订单",
+        "version": 1,
+        "priority": 50,
+        "status": "enabled",
+        "category": "销售",
+        "effective_scope": {"target_type": "order", "filters": []},
+        "conditions": {"type": "condition", "field": "customer.level", "operator": "eq", "value": "VIP"},
+        "actions": [{"type": "action", "action_type": "block", "target": "订单", "channel": null, "message": "拦截该订单", "params": {}}],
+        "created_at": null, "updated_at": null, "author": null
+      },
+      "versions": []
+    },
+    {
+      "rule": {
+        "rule_id": "MUT-003",
+        "name": "大额订单特批",
+        "description": "订单金额超过1万元时批准特批",
+        "version": 1,
+        "priority": 50,
+        "status": "enabled",
+        "category": "销售",
+        "effective_scope": {"target_type": "order", "filters": []},
+        "conditions": {"type": "condition", "field": "order.amount", "operator": "gt", "value": 10000},
+        "actions": [{"type": "action", "action_type": "approve", "target": "特批", "channel": null, "message": "批准大额订单特批", "params": {}}],
+        "created_at": null, "updated_at": null, "author": null
+      },
+      "versions": []
+    },
+    {
+      "rule": {
+        "rule_id": "MUT-004",
+        "name": "大额订单风控拦截",
+        "description": "订单金额超过1万元时触发风控拦截",
+        "version": 1,
+        "priority": 50,
+        "status": "enabled",
+        "category": "销售",
+        "effective_scope": {"target_type": "order", "filters": []},
+        "conditions": {"type": "condition", "field": "order.amount", "operator": "gt", "value": 10000},
+        "actions": [{"type": "action", "action_type": "block", "target": "订单", "channel": null, "message": "触发风控拦截", "params": {}}],
+        "created_at": null, "updated_at": null, "author": null
+      },
+      "versions": []
+    }
+  ]
+}
